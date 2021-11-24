@@ -16,8 +16,8 @@ app.use(express.json())
 app.use(cookieParser());
 
 
-app.get('/', (req, res) => {
-    res.json({"hello ~": "Hi !!"})
+app.get("/api/user/auth", (req, res) => {
+
 });
 
 app.post('/api/users/register', (req, res) => {
