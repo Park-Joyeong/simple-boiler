@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const config = require('./config/key');
 
 const { User } = require('./models/user');
+const { auth } = require('./middleware/auth');
 
 mongoose.connect(config.mongoURI, 
     {useNewUrlParser: true}).then(() => console.log('DB connected'))
@@ -16,8 +17,9 @@ app.use(express.json())
 app.use(cookieParser());
 
 
-app.get("/api/user/auth", (req, res) => {
-
+app.get("/api/user/auth", auth, (req, res) => {
+    // TODO
+    // res.status(200).json
 });
 
 app.post('/api/users/register', (req, res) => {
