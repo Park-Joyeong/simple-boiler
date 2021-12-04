@@ -15,6 +15,9 @@ mongoose.connect(config.mongoURI,
 app.use(express.json())
 app.use(cookieParser());
 
+app.get("/", (req, res) => {
+    res.json({"hello": "I am happy to deploy our application"});
+})
 
 app.post('/api/users/register', (req, res) => {
     const user = new User(req.body);
