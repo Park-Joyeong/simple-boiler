@@ -52,7 +52,7 @@ class RegisterLogin extends Component {
             <div className="container">
                 <h2>Login</h2>
                 <div className="row">
-                    <form className="col s12" /*onSubmit={e => this.submitForm(e)}*/>
+                    <form className="col s12">
                         <div className="row">
                             <div className="input-field col s12">
                                 <input
