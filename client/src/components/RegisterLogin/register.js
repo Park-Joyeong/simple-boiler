@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { registerUser } from '../../actions/user_actions';
 
 class Register extends Component {
@@ -64,14 +65,25 @@ class Register extends Component {
             passwordConfirmation: this.state.passwordConfirmation
         }
 
-        console.log(dataToSubmit);
-        
         if (this.isFormValid()) {
             this.setState({ errors: [] });
             this.props.dispatch(registerUser(dataToSubmit))
                 .then(res => {
-                    console.log(res);
+                    if(res.payload.success) {
+                        this.props.history.push('/login');
+                    } else {
+                        this.setState({
+                            errors: this.state.errors.concat("Your attempt to send data to DB was failed")
+                        });
+                    }
+                })
+                .catch(err => {
+                    this.setState({
+                        errors: this.state.errors.concat(err)
+                    });
                 });
+        } else {
+            console.error("Form is not valid");
         }
     }
 
@@ -187,4 +199,4 @@ class Register extends Component {
     }
 }
 
-export default Register;
+export default connect()(Register);
